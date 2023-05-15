@@ -225,7 +225,6 @@ export default function Tablecomponent(props) {
   };
 
   const removeTransaction = (id) => {
-    debugger;
     console.log(id);
     toast.success("Record Deleted", {
       icon: <i className="fa-solid fa-trash"></i>,
@@ -235,8 +234,7 @@ export default function Tablecomponent(props) {
       },
       iconTheme: {},
     });
-
-    dispatch(deleteTransaction(id));
+    dispatch(deleteTransaction({ id: id }));
   };
 
   return (

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Selectcombo from "./comboBox";
 import {
@@ -17,8 +17,8 @@ import {
 } from "../../redux_duck/transactionSlice";
 export default function Transactionform({ formValues, userId }) {
   const navigate = useNavigate();
-
   const dispatch = useDispatch();
+
   const transaction_redux = useSelector((state) => state.transaction);
 
   let intialTransaction;
@@ -163,9 +163,7 @@ export default function Transactionform({ formValues, userId }) {
 
           transaction.tran_id = previousId + 1;
           // getData.push(transaction);
-
-          console.log(transaction, "TRASLA???????????????//");
-          dispatch(addTransaction(transaction)); //Context Data
+          dispatch(addTransaction(transaction)); //Redux Data
         }
 
         navigate("/");
@@ -173,8 +171,8 @@ export default function Transactionform({ formValues, userId }) {
         const transaction_clone = { ...transaction };
         console.log(transaction_clone);
         transaction_clone["tran_id"] = 1;
-        addTransaction([transaction_clone]);
-        // setItem("Transaction", [transaction_clone]);
+        dispatch(addTransaction([transaction_clone]));
+
         navigate("/");
       }
     }

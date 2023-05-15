@@ -13,13 +13,14 @@ import Protected from "./pages/finance/protected/components/protectedRoute";
 import Loginform from "./pages/finance/login/components/loginUse";
 import Registerform from "./pages/finance/register/components/registerUse";
 import Transactionform from "./pages/finance/transactionForm/components/useform";
-import TableProvider from "./pages/finance/context/tableContext";
+
 import { Provider } from "react-redux";
 import store from "./pages/finance/redux_duck/store";
+import { CookiesProvider } from "react-cookie";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <TableProvider>
-    <Provider store={store}>
+  <Provider store={store}>
+    <CookiesProvider>
       <BrowserRouter>
         <Routes>
           <Route path="/">
@@ -50,8 +51,8 @@ root.render(
           </Route>
         </Routes>
       </BrowserRouter>
-    </Provider>
-  </TableProvider>
+    </CookiesProvider>
+  </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function

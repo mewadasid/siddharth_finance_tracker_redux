@@ -1,4 +1,4 @@
-import { createSlice, current } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = [
   {
@@ -43,26 +43,34 @@ const transactionSlice = createSlice({
   initialState,
   reducers: {
     addTransaction: (state, action) => {
-      console.log(state, "Asdasdadadad");
-      state.push(action.payload);
+      if (state.length === 0) {
+        return (state = action.payload);
+      } else {
+        state.push(action.payload);
+      }
     },
     updateTransaction: (state, action) => {
       const { transaction, id } = action.payload;
-      const index = Object.values(state).findIndex(
-        (trans) => trans.tran_id == id
-      );
+      const index = state.findIndex((trans) => trans.tran_id == id);
       state[index] = transaction;
     },
     deleteTransaction: (state, action) => {
       const { id } = action.payload;
-      const filterRecord = state.filter(
+
+      console.log(id, "IDID");
+      const clone = [...state];
+      const filterData = clone.filter(
         (item) => parseInt(item.tran_id) !== parseInt(id)
       );
-      console.log(filterRecord, "DSJKDO:MSDO:");
+      return filterData;
     },
   },
 });
-export const { addTransaction, updateTransaction, deleteTransaction } =
-  transactionSlice.actions;
+export const {
+  addTransaction,
+  updateTransaction,
+  deleteTransaction,
+  viewTransaction,
+} = transactionSlice.actions;
 
 export default transactionSlice.reducer;

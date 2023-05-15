@@ -1,9 +1,7 @@
-import React, { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
 import "../css/style.css";
 
 import Transactionform from "../../transactionForm/components/useform";
-import { useTable } from "../../context/tableContext";
 import { useSelector } from "react-redux";
 export default function Edituser() {
   const { id } = useParams();

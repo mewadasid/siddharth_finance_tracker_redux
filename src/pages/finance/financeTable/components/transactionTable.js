@@ -5,10 +5,11 @@ import "../css/style.css";
 import Tablecomponent from "./tablecomponent";
 
 import { useSelector } from "react-redux";
+import { Cookies } from "react-cookie";
 
 export default function Transactiontable() {
   const navigate = useNavigate();
-  // const { transactionData } = useTable(); //Context
+  const cookie = new Cookies();
   const transaction_redux = useSelector((state) => state.transaction);
 
   console.log(transaction_redux, "TABLE>>>>>>>>>>>");
@@ -21,6 +22,7 @@ export default function Transactiontable() {
     setTransaction(transaction_redux);
   }, [transaction_redux]);
 
+  console.log(transactions, "IN PARENT");
   const [isGroup, setIsGroup] = useState(false);
   const [groupVal, setGroupVal] = useState("");
 
@@ -69,9 +71,12 @@ export default function Transactiontable() {
     }
   };
 
-  const remove = () => {
-    localStorage.removeItem("loginToken");
-    navigate("/login");
+  const logout = () => {
+    const status = window.confirm("Are you sure for logout?");
+    if (status) {
+      cookie.remove("token");
+      navigate("/login");
+    }
   };
 
   return (
@@ -84,7 +89,7 @@ export default function Transactiontable() {
         </Link>
       </div>
 
-      {transactions ? (
+      {transactions.length > 0 ? (
         <div className="container-fluid">
           <div className="topBarWrapper">
             <div>
@@ -103,7 +108,7 @@ export default function Transactiontable() {
             <div>
               <button
                 type="button"
-                onClick={() => remove()}
+                onClick={() => logout()}
                 className="btn btn-primary logOutbtn"
               >
                 LOGOUT

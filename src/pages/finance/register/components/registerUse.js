@@ -7,8 +7,9 @@ import "../css/registerform.css";
 
 import { useDispatch, useSelector } from "react-redux";
 import { registerData } from "../../redux_duck/userAuth";
+import { Toaster, toast } from "react-hot-toast";
 
-export default function Registerform() {
+export default function Register() {
   const register_redux = useSelector((state) => state.register);
   const dispatch = useDispatch();
   const [error, setError] = useState({});
@@ -42,7 +43,6 @@ export default function Registerform() {
     reValidateMode: "onSubmit",
   });
 
-  // const stopFIrst = useRef(true);
   const submit = (data) => {
     console.log(getRegister);
     if (getRegister.length !== 0) {
@@ -55,15 +55,8 @@ export default function Registerform() {
             const { email_exists, ...rest } = c;
             return rest;
           });
-          //   if (getRegister !== null) {
           dispatch(registerData(data));
-
           navigate("/login");
-          //   } else {
-          //     dispatch(registerData([data]));
-          //     // setItem("userRegister", [data]);
-          //     navigate("/login");
-          //   }
         }
       }
     } else {
@@ -76,7 +69,8 @@ export default function Registerform() {
     <div className="form_container">
       <form onSubmit={handleSubmit(submit)}>
         <div className="mb-3">
-          <label for="exampleInputEmail1" class="form-label">
+          <Toaster />
+          <label htmlFor="exampleInputEmail1" class="form-label">
             Fullname :
           </label>
           <input
@@ -93,7 +87,7 @@ export default function Registerform() {
           </div>
         </div>
         <div className="mb-3">
-          <label for="exampleInputEmail1" className="form-label">
+          <label htmlFor="exampleInputEmail1" className="form-label">
             Email address :
           </label>
           <input
@@ -114,7 +108,7 @@ export default function Registerform() {
           </div>
         </div>
         <div className="mb-3">
-          <label for="exampleInputPassword1" className="form-label">
+          <label htmlFor="exampleInputPassword1" className="form-label">
             Password :
           </label>
           <input

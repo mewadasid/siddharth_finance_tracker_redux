@@ -12,17 +12,13 @@ export default function Transactiontable() {
   const cookie = new Cookies();
   const transaction_redux = useSelector((state) => state.transaction);
 
-  console.log(transaction_redux, "TABLE>>>>>>>>>>>");
-
   const [transactions, setTransaction] = useState(transaction_redux);
   const [groupData, setGroupData] = useState({});
 
   useEffect(() => {
-    console.log("table component EFFECT >>>");
     setTransaction(transaction_redux);
   }, [transaction_redux]);
 
-  console.log(transactions, "IN PARENT");
   const [isGroup, setIsGroup] = useState(false);
   const [groupVal, setGroupVal] = useState("");
 
@@ -50,7 +46,6 @@ export default function Transactiontable() {
         }
         setGroupData(groupedMap);
       } else {
-        console.log("object");
         setGroupData([]);
       }
     } else {
@@ -64,9 +59,7 @@ export default function Transactiontable() {
         }
         setGroupData(groupedMap);
       } else {
-        console.log("object");
         setGroupData([]);
-        // setIsGroup(false);
       }
     }
   };
@@ -74,7 +67,7 @@ export default function Transactiontable() {
   const logout = () => {
     const status = window.confirm("Are you sure for logout?");
     if (status) {
-      cookie.remove("token");
+      cookie.remove("token", { path: "/" });
       navigate("/login");
     }
   };
@@ -117,8 +110,6 @@ export default function Transactiontable() {
           </div>
           <Tablecomponent transactions={transactions} />
           {Object.keys(groupData).map((item) => {
-            console.log(item);
-            console.log("hello group", item, groupData[item]);
             return <Tablecomponent transactions={groupData[item]} />;
           })}
         </div>

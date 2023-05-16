@@ -15,7 +15,7 @@ const validatioSchema = yup.object().shape({
   userPassword: yup.string().required("Please Fill Password").min(6).max(15),
 });
 
-export default function Loginform() {
+export default function Login() {
   const register_redux = useSelector((state) => state.register);
   const [error, setError] = useState({});
   const [cookie, setCookie] = useCookies();
@@ -77,7 +77,7 @@ export default function Loginform() {
     <div className="form_container">
       <form onSubmit={handleSubmit(submit)}>
         <div className="mb-3">
-          <label for="exampleInputEmail1" className="form-label">
+          <label htmlFor="exampleInputEmail1" className="form-label">
             Email address
           </label>
           <input
@@ -97,7 +97,7 @@ export default function Loginform() {
           </div>
         </div>
         <div className="mb-3">
-          <label for="exampleInputPassword1" className="form-label">
+          <label htmlFor="exampleInputPassword1" className="form-label">
             Password
           </label>
           <input

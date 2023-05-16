@@ -1,10 +1,10 @@
-import React from 'react'
-import Register from './components/register'
+import React from "react";
+import Register from "./components/registerUse";
 
-export default function RegisterPage() {
-    return (
-        <div>
-            <Register />
-        </div>
-    )
+export default function RegisterForm() {
+  return (
+    <div>
+      <Register />
+    </div>
+  );
 }

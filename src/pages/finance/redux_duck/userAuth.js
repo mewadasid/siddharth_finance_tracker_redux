@@ -1,16 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { Toaster, toast } from "react-hot-toast";
 
 const initialState = [
-  // {
-  //   userFullname: "sid",
-  //   userEmail: "Sid@gmail.com",
-  //   userPassword: "Sid@12345",
-  // },
-  // {
-  //   userFullname: "Siddharth Pandya",
-  //   userEmail: "Aa@gmail.com",
-  //   userPassword: "Sid@12345",
-  // },
+  {
+    userFullname: "sid",
+    userEmail: "Sid@gmail.com",
+    userPassword: "Sid@12345",
+  },
+  {
+    userFullname: "Siddharth Pandya",
+    userEmail: "Aa@gmail.com",
+    userPassword: "Sid@12345",
+  },
 ];
 
 const userAuth = createSlice({

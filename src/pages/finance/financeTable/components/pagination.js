@@ -1,7 +1,6 @@
-import { React, } from "react";
+import { React } from "react";
 import "../css/style.css";
 export default function Pagination({
-
   pageChange,
   number,
   previous,
@@ -9,27 +8,23 @@ export default function Pagination({
   next,
   noPage,
 }) {
-  console.log(number.length);
   return (
     <div className="paginationNumber">
       <span onClick={() => previous()}>Prev</span>
 
-      {
-        number.length <= 3 ?
-          number.map((pageNo) => {
+      {number.length <= 3
+        ? number.map((pageNo) => {
             return (
-              <>
-                <span
-                  className={`${cuurentPage == pageNo ? "active" : ""}`}
-                  onClick={() => pageChange(pageNo)}
-                >
-                  {pageNo}
-                </span>
-              </>
-
+              <span
+                key={pageNo}
+                className={`${cuurentPage == pageNo ? "active" : ""}`}
+                onClick={() => pageChange(pageNo)}
+              >
+                {pageNo}
+              </span>
             );
           })
-          : number.slice(cuurentPage - 1, cuurentPage - 1 + 3).map((pageNo) => {
+        : number.slice(cuurentPage - 1, cuurentPage - 1 + 3).map((pageNo) => {
             return (
               <>
                 <span
@@ -38,12 +33,9 @@ export default function Pagination({
                 >
                   {pageNo}
                 </span>
-
               </>
-
             );
           })}
-
 
       <span
         className={`${noPage == 1 ? "disable" : ""}`}
@@ -51,6 +43,6 @@ export default function Pagination({
       >
         Next
       </span>
-    </div >
+    </div>
   );
 }

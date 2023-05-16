@@ -10,13 +10,12 @@ import Displayuser from "./pages/finance/financeTable/components/displayUser";
 import Edituser from "./pages/finance/financeTable/components/editUser";
 import Transactiontable from "./pages/finance/financeTable/components/transactionTable";
 import Protected from "./pages/finance/protected/components/protectedRoute";
-import Loginform from "./pages/finance/login/components/loginUse";
-import Registerform from "./pages/finance/register/components/registerUse";
-import Transactionform from "./pages/finance/transactionForm/components/useform";
-
 import { Provider } from "react-redux";
 import store from "./pages/finance/redux_duck/store";
 import { CookiesProvider } from "react-cookie";
+import AddTransaction from "./pages/finance/transactionForm";
+import RegisterForm from "./pages/finance/register";
+import Loginform from "./pages/finance/login";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
@@ -25,7 +24,7 @@ root.render(
         <Routes>
           <Route path="/">
             <Route path="login" element={<Loginform />}></Route>
-            <Route path="register" element={<Registerform />}></Route>
+            <Route path="register" element={<RegisterForm />}></Route>
             <Route path="displayData">
               <Route
                 path=""
@@ -33,7 +32,7 @@ root.render(
               ></Route>
               <Route
                 path="createTransaction"
-                element={<Protected Cmp={<Transactionform />} />}
+                element={<Protected Cmp={<AddTransaction />} />}
               ></Route>
               <Route
                 path=":id"

@@ -10,7 +10,6 @@ export default function Tablecomponent(props) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log("table component created EFFECT >>>");
     setNewData(props.transactions);
   }, [props.transactions]);
 
@@ -26,7 +25,6 @@ export default function Tablecomponent(props) {
 
   const pageChange = (pageNo) => {
     setCurrentPage(pageNo);
-    console.log(pageNo);
   };
 
   const previous = () => {
@@ -197,7 +195,6 @@ export default function Tablecomponent(props) {
     if (value !== "") {
       const search = cloneData.filter((data) => {
         return Object.keys(data).some((item) => {
-          console.log(data[item]);
           if (
             item != "tran_id" &&
             item != "tran_receipt" &&
@@ -208,7 +205,6 @@ export default function Tablecomponent(props) {
         });
       });
 
-      console.log(search, "DSDSD");
       if (search.length !== 0) {
         toast.success("Data Founded", {
           duration: 1300,
@@ -225,7 +221,6 @@ export default function Tablecomponent(props) {
   };
 
   const removeTransaction = (id) => {
-    console.log(id);
     toast.success("Record Deleted", {
       icon: <i className="fa-solid fa-trash"></i>,
       style: {
@@ -259,9 +254,9 @@ export default function Tablecomponent(props) {
           },
         }}
       />
-      <form class="d-flex mx-3 mb-4">
+      <form className="d-flex mx-3 mb-4">
         <input
-          class="form-control me-1 searchBar"
+          className="form-control me-1 searchBar"
           onChange={debounce(searchInput, 500)}
           type="search"
           placeholder="Search"
@@ -269,113 +264,113 @@ export default function Tablecomponent(props) {
         />
       </form>
       {displayData ? (
-        <table class="table main_table">
-          <thead class="table-dark">
+        <table className="table main_table">
+          <thead className="table-dark">
             <tr>
               {sortOrder.current === "asc" && lastSortkey === "tran_date" ? (
                 <th scope="col" onClick={() => sorting("tran_date")}>
                   Transaction Date
-                  <i class="fa-sharp fa-solid fa-caret-up mx-3"></i>
+                  <i className="fa-sharp fa-solid fa-caret-up mx-3"></i>
                 </th>
               ) : sortOrder.current === "desc" &&
                 lastSortkey === "tran_date" ? (
                 <th scope="col" onClick={() => sorting("tran_date")}>
                   Transaction Date
-                  <i class="fa-sharp fa-solid fa-caret-down mx-3"></i>
+                  <i className="fa-sharp fa-solid fa-caret-down mx-3"></i>
                 </th>
               ) : (
                 <th scope="col" onClick={() => sorting("tran_date")}>
                   Transaction Date
-                  <i class="fa-solid fa-sort"></i>
+                  <i className="fa-solid fa-sort"></i>
                 </th>
               )}
 
               {sortOrder.current === "asc" && lastSortkey === "tran_month" ? (
                 <th scope="col" onClick={() => sorting("tran_month")}>
                   Month Year
-                  <i class="fa-sharp fa-solid fa-caret-up mx-3"></i>
+                  <i className="fa-sharp fa-solid fa-caret-up mx-3"></i>
                 </th>
               ) : sortOrder.current === "desc" &&
                 lastSortkey === "tran_month" ? (
                 <th scope="col" onClick={() => sorting("tran_month")}>
                   Month Year
-                  <i class="fa-sharp fa-solid fa-caret-down mx-3"></i>
+                  <i className="fa-sharp fa-solid fa-caret-down mx-3"></i>
                 </th>
               ) : (
                 <th scope="col" onClick={() => sorting("tran_month")}>
                   Month Year
-                  <i class="fa-solid fa-sort"></i>
+                  <i className="fa-solid fa-sort"></i>
                 </th>
               )}
 
               {sortOrder.current === "asc" && lastSortkey === "tran_type" ? (
                 <th scope="col" onClick={() => sorting("tran_type")}>
                   Transaction Type
-                  <i class="fa-sharp fa-solid fa-caret-up mx-3"></i>
+                  <i className="fa-sharp fa-solid fa-caret-up mx-3"></i>
                 </th>
               ) : sortOrder.current === "desc" &&
                 lastSortkey === "tran_type" ? (
                 <th scope="col" onClick={() => sorting("tran_type")}>
                   Transaction Type
-                  <i class="fa-sharp fa-solid fa-caret-down mx-3"></i>
+                  <i className="fa-sharp fa-solid fa-caret-down mx-3"></i>
                 </th>
               ) : (
                 <th scope="col" onClick={() => sorting("tran_type")}>
                   Transaction Type
-                  <i class="fa-solid fa-sort"></i>
+                  <i className="fa-solid fa-sort"></i>
                 </th>
               )}
 
               {sortOrder.current === "asc" && lastSortkey === "tran_from" ? (
                 <th scope="col" onClick={() => sorting("tran_from")}>
                   Transaction From
-                  <i class="fa-sharp fa-solid fa-caret-up mx-3"></i>
+                  <i className="fa-sharp fa-solid fa-caret-up mx-3"></i>
                 </th>
               ) : sortOrder.current === "desc" &&
                 lastSortkey === "tran_from" ? (
                 <th scope="col" onClick={() => sorting("tran_from")}>
                   Transaction From
-                  <i class="fa-sharp fa-solid fa-caret-down mx-3"></i>
+                  <i className="fa-sharp fa-solid fa-caret-down mx-3"></i>
                 </th>
               ) : (
                 <th scope="col" onClick={() => sorting("tran_from")}>
                   Transaction From
-                  <i class="fa-solid fa-sort"></i>
+                  <i className="fa-solid fa-sort"></i>
                 </th>
               )}
 
               {sortOrder.current === "asc" && lastSortkey === "tran_to" ? (
                 <th scope="col" onClick={() => sorting("tran_to")}>
                   Transaction To
-                  <i class="fa-sharp fa-solid fa-caret-up mx-3"></i>
+                  <i className="fa-sharp fa-solid fa-caret-up mx-3"></i>
                 </th>
               ) : sortOrder.current === "desc" && lastSortkey === "tran_to" ? (
                 <th scope="col" onClick={() => sorting("tran_to")}>
                   Transaction To
-                  <i class="fa-sharp fa-solid fa-caret-down mx-3"></i>
+                  <i className="fa-sharp fa-solid fa-caret-down mx-3"></i>
                 </th>
               ) : (
                 <th scope="col" onClick={() => sorting("tran_to")}>
                   Transaction To
-                  <i class="fa-solid fa-sort"></i>
+                  <i className="fa-solid fa-sort"></i>
                 </th>
               )}
 
               {sortOrder.current === "asc" && lastSortkey === "tran_amount" ? (
                 <th scope="col" onClick={() => sorting("tran_amount")}>
                   Amount
-                  <i class="fa-sharp fa-solid fa-caret-up mx-3"></i>
+                  <i className="fa-sharp fa-solid fa-caret-up mx-3"></i>
                 </th>
               ) : sortOrder.current === "desc" &&
                 lastSortkey === "tran_amount" ? (
                 <th scope="col" onClick={() => sorting("tran_amount")}>
                   Amount
-                  <i class="fa-sharp fa-solid fa-caret-down mx-3"></i>
+                  <i className="fa-sharp fa-solid fa-caret-down mx-3"></i>
                 </th>
               ) : (
                 <th scope="col" onClick={() => sorting("tran_amount")}>
                   Amount
-                  <i class="fa-solid fa-sort"></i>
+                  <i className="fa-solid fa-sort"></i>
                 </th>
               )}
 
@@ -384,18 +379,18 @@ export default function Tablecomponent(props) {
               {sortOrder.current === "asc" && lastSortkey === "tran_note" ? (
                 <th scope="col" onClick={() => sorting("tran_note")}>
                   Notes
-                  <i class="fa-sharp fa-solid fa-caret-up mx-3"></i>
+                  <i className="fa-sharp fa-solid fa-caret-up mx-3"></i>
                 </th>
               ) : sortOrder.current === "desc" &&
                 lastSortkey === "tran_note" ? (
                 <th scope="col" onClick={() => sorting("tran_note")}>
                   Notes
-                  <i class="fa-sharp fa-solid fa-caret-down mx-3"></i>
+                  <i className="fa-sharp fa-solid fa-caret-down mx-3"></i>
                 </th>
               ) : (
                 <th scope="col" onClick={() => sorting("tran_note")}>
                   Notes
-                  <i class="fa-solid fa-sort"></i>
+                  <i className="fa-solid fa-sort"></i>
                 </th>
               )}
               <th scope="col">View</th>
@@ -425,17 +420,17 @@ export default function Tablecomponent(props) {
                   <td>{item.tran_note}</td>
                   <td>
                     <Link to={`${item.tran_id}`}>
-                      <i class="fa-solid fa-eye"></i>
+                      <i className="fa-solid fa-eye"></i>
                     </Link>
                   </td>
                   <td>
                     <Link to={`edit/${item.tran_id}`}>
-                      <i class="fa-solid fa-pen-to-square"></i>
+                      <i className="fa-solid fa-pen-to-square"></i>
                     </Link>
                   </td>
                   <td>
                     <i
-                      class="fa-solid fa-trash"
+                      className="fa-solid fa-trash"
                       onClick={() => removeTransaction(item.tran_id)}
                     ></i>
                   </td>

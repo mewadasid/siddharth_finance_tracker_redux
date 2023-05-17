@@ -3,10 +3,10 @@ import { useNavigate, Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import "../css/registerform.css";
+import "./css/style.css";
 
 import { useDispatch, useSelector } from "react-redux";
-import { registerData } from "../../redux_duck/userAuth";
+import { registerData } from "../redux_duck/userAuth";
 import { Toaster, toast } from "react-hot-toast";
 
 export default function Register() {
@@ -44,7 +44,7 @@ export default function Register() {
   });
 
   const submit = (data) => {
-    console.log(getRegister);
+    data.userEmail = data.userEmail.toLowerCase();
     if (getRegister.length !== 0) {
       for (let key in getRegister) {
         if (getRegister[key].userEmail === data.userEmail) {
@@ -56,13 +56,23 @@ export default function Register() {
             return rest;
           });
           dispatch(registerData(data));
-          navigate("/login");
+          toast.success("Register Successfully");
+          setTimeout(() => {
+            navigate("/login");
+          }, 2000);
         }
       }
     } else {
-      dispatch(registerData([data]));
-      navigate("/login");
+      dispatch(registerData(data));
+      toast.success("Register Successfully");
+      setTimeout(() => {
+        navigate("/login");
+      }, 2000);
     }
+  };
+
+  const handleChange = () => {
+    setError({});
   };
 
   return (
@@ -70,14 +80,14 @@ export default function Register() {
       <form onSubmit={handleSubmit(submit)}>
         <div className="mb-3">
           <Toaster />
-          <label htmlFor="exampleInputEmail1" class="form-label">
+          <label htmlFor="exampleInputEmail1" className="form-label">
             Fullname :
           </label>
           <input
-            {...register("userFullname")}
+            {...register("userFullname", { onChange: handleChange })}
             type="text"
             name="userFullname"
-            class="form-control"
+            className="form-control"
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
             placeholder="Fullname"
@@ -87,15 +97,15 @@ export default function Register() {
           </div>
         </div>
         <div className="mb-3">
-          <label htmlFor="exampleInputEmail1" className="form-label">
+          <label htmlFor="exampleInputEmail2" className="form-label">
             Email address :
           </label>
           <input
-            {...register("userEmail")}
+            {...register("userEmail", { onChange: handleChange })}
             type="text"
             name="userEmail"
             className="form-control"
-            id="exampleInputEmail1"
+            id="exampleInputEmail2"
             aria-describedby="emailHelp"
             placeholder="test@gmail.com"
           />
@@ -112,7 +122,7 @@ export default function Register() {
             Password :
           </label>
           <input
-            {...register("userPassword")}
+            {...register("userPassword", { onChange: handleChange })}
             type="password"
             name="userPassword"
             className="form-control error_msg"
@@ -124,7 +134,7 @@ export default function Register() {
             <span className="error_msg">{errors.userPassword?.message}</span>
           </div>
         </div>
-        <button type="submit" class="my-2 btn btn-primary">
+        <button type="submit" className="my-2 btn btn-primary">
           Submit
         </button>
       </form>

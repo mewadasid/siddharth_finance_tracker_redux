@@ -1,10 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { Toaster, toast } from "react-hot-toast";
 
 const initialState = [
   {
     userFullname: "sid",
-    userEmail: "Sid@gmail.com",
+    userEmail: "sid@gmail.com",
     userPassword: "Sid@12345",
   },
   {
@@ -19,11 +18,7 @@ const userAuth = createSlice({
   initialState,
   reducers: {
     registerData: (state, action) => {
-      if (state.length === 0) {
-        return (state = action.payload);
-      } else {
-        state.push(action.payload);
-      }
+      state.push(action.payload);
     },
   },
 });

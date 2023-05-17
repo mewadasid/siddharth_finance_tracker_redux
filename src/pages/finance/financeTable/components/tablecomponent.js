@@ -2,7 +2,7 @@ import { React, useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Pagination from "./pagination";
 import toast, { Toaster } from "react-hot-toast";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { deleteTransaction } from "../../redux_duck/transactionSlice";
 export default function Tablecomponent(props) {
   const [newData, setNewData] = useState(props.transactions);
@@ -202,6 +202,7 @@ export default function Tablecomponent(props) {
           ) {
             return item;
           }
+          return 0;
         });
       });
 

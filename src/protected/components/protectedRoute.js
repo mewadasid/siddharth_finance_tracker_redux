@@ -11,6 +11,7 @@ export default function Protected({ Cmp }) {
     if (!token) {
       return navigate("/login");
     }
+    //eslint-disable-next-line
   }, []);
   return Cmp;
 }

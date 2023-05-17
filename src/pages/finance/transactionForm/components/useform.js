@@ -171,7 +171,7 @@ export default function Transactionform({ formValues, userId }) {
         const transaction_clone = { ...transaction };
         console.log(transaction_clone);
         transaction_clone["tran_id"] = 1;
-        dispatch(addTransaction([transaction_clone]));
+        dispatch(addTransaction(transaction_clone));
 
         navigate("/");
       }

@@ -5,7 +5,7 @@ import * as yup from "yup";
 import { useNavigate, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useCookies } from "react-cookie";
-
+import "./css/style.css";
 const validatioSchema = yup.object().shape({
   userEmail: yup
     .string()
@@ -32,6 +32,7 @@ export default function Login() {
   });
 
   const submit = (data) => {
+    data.userEmail = data.userEmail.toLowerCase();
     const registerData = register_redux;
     let credential = [];
     if (registerData.length > 0) {

@@ -26,6 +26,7 @@ export default function Transactiontable() {
     if (isGroup === true) {
       handleChange(groupVal);
     }
+    //eslint-disable-next-line
   }, [transactions]);
 
   const handleChange = (e) => {

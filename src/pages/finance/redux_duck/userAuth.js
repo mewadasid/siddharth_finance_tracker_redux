@@ -22,5 +22,6 @@ const userAuth = createSlice({
     },
   },
 });
-export const { registerData } = userAuth.actions;
-export default userAuth.reducer;
+const { actions, reducer } = userAuth;
+export const { registerData } = actions;
+export default reducer;

@@ -22,8 +22,15 @@ const AddTransaction = lazy(() =>
 
 const routes = (
   <Route path="/">
-    <Route path="login" element={<Loginform />}></Route>
-    <Route path="register" element={<RegisterForm />}></Route>
+    <Route
+      path="login"
+      element={<Protected ispublic="true" Cmp={<Loginform />} />}
+    ></Route>
+    <Route
+      path="register"
+      public={true}
+      element={<Protected ispublic="true" Cmp={<RegisterForm />} />}
+    ></Route>
     <Route path="displayData">
       <Route path="" element={<Protected Cmp={<TransactionShow />} />}></Route>
       <Route
@@ -34,6 +41,7 @@ const routes = (
       <Route path="edit/:id" element={<Protected Cmp={<Edituser />} />}></Route>
     </Route>
     <Route path="" element={<Navigate to={"/displayData"}></Navigate>}></Route>
+    <Route path="/*" element={<h1>404 Error</h1>}></Route>
   </Route>
 );
 

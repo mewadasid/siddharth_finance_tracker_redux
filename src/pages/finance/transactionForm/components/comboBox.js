@@ -12,7 +12,7 @@ export default function Selectcombo({
       {option.map((item, index) => {
         return (
           <option
-            selected={formValues === item.value}
+            defaultValue={formValues === item.value}
             value={item.value}
             key={index}
           >
